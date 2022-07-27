@@ -1,2 +1,2 @@
 # YelpCamp
-Boot-campproject
+Boot-camp project
