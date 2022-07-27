@@ -13,6 +13,6 @@ mongoose.connect(process.env.MONGODB_URI).then(console.log('Connected')).catch(e
 
 
 app.get("/", (req,res)=>{
-    res.status(200).send('Hello world!')
+    res.render('home');
 })
 app.listen(3000)
