@@ -11,8 +11,6 @@ app.use(express.urlencoded({extended:true}));
 //connection string
 mongoose.connect(process.env.MONGODB_URI).then(console.log('Connected')).catch(err => console.log(err));
 
-
-app.get("/", (req,res)=>{
-    res.render('home');
-})
+const home = require('./routes/home')
+app.use("/",home);
 app.listen(3000)
