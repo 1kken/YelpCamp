@@ -7,11 +7,7 @@
     <title>Yelp-Camp</title>
 </head>
 <body>
-    <h1>Camp grounds</h1>
-    <%for(let data of datas){%>
-        <ul>
-             <a href="/<%= data._id %> "><li><%= data.title %></a> </li>
-        </ul>
-    <%}%>
+    <h1><%=datas.title%></h1>
+<ul><li><%=datas.location%></li></ul>
 </body>
 </html>
