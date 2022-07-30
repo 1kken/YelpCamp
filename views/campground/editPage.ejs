@@ -1,21 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+<% layout('layouts/boilerplate') -%>
     <h1>Edit Page</h1>
-    <form action="/<%=datas._id%>/edit?_method=PATCH" method="post">
+    <form action="/<%=datas._id%>?_method=PUT" method="post">
         <label for="title">Title</label>
-        <textarea name="title" id="title" cols="30" rows="10"><%=datas.title%></textarea>
+        <input type="text" id="title" name="title" value="<%=datas.title%>">
         <label for="location">location</label>
-        <textarea name="location" id="location" cols="30" rows="10"><%=datas.location%></textarea>
+        <input type="text" id="location" name="location" value="<%=datas.location%>">
         <button type="submit">Update</button>
     </form>
 
-    
-</body>
-</html>
+    <div>
+        <a href="/">Home</a>
+</div>
+
