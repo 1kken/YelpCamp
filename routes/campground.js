@@ -34,7 +34,7 @@ home.post("/", inputValidator, async (req, res) => {
     location: datas.location,
   });
   const saved = await newCamp.save();
-  res.redirect(`/${saved._id}`);
+  res.redirect(`campground/${saved._id}`);
 });
 //Show edit page
 home.get("/:id/edit", async (req, res) => {
@@ -57,14 +57,14 @@ home.put("/:id", inputValidator, async (req, res) => {
   } catch (error) {
     console.log("something went bad");
   }
-  res.redirect(`/${id}`);
+  res.redirect(`/campground/${id}`);
 });
 
 //Delete Camp Ground
 home.delete("/:id", async (req, res) => {
   const id = req.params.id;
   const deleted = await campGround.findByIdAndDelete(id);
-  res.redirect("/");
+  res.redirect("/campground");
 });
 
 //middlewares

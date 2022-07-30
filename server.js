@@ -15,7 +15,7 @@ mongoose
   .then(console.log("Connected"))
   .catch((err) => console.log(err));
 
-const home = require("./routes/home");
-app.use("/", home);
+const campground = require("./routes/campground");
+app.use("/campground", campground);
 app.listen(3000);
 
