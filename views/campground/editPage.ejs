@@ -1,14 +1,67 @@
 <% layout('layouts/boilerplate') -%>
-    <h1>Edit Page</h1>
-    <form action="/campground/<%=datas.id%>?_method=PUT " method="post">
-        <label for="title">Title</label>
-        <input type="text" id="title" name="title" value="<%=datas.title%>">
-        <label for="location">location</label>
-        <input type="text" id="location" name="location" value="<%=datas.location%>">
-        <button type="submit">Update</button>
-    </form>
-
-    <div>
-        <a href="/campground">Home</a>
+<div class="row">
+  <h1>Edit page</h1>
+  <form action="/campground/<%=datas.id%>?_method=PUT" method="post">
+    <div class="mb-3">
+      <label for="title" class="form-label">Title</label>
+      <input
+        type="text"
+        id="title"
+        class="form-control"
+        name="title"
+        value="<%=datas.title%>"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="location" class="form-label">location</label>
+      <input
+        type="text"
+        id="location"
+        name="location"
+        class="form-control"
+        value="<%=datas.location%>"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="image" class="form-label">Image Url</label>
+      <input
+        type="text"
+        id="Image"
+        name="image"
+        class="form-control"
+        value="<%=datas.image%>"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <textarea id="description" name="description" class="form-control">
+      <%=datas.description%> </textarea
+      >
+    </div>
+    <div class="input-group mb-3">
+      <span class="input-group-text">$</span>
+      <input
+        id="price"
+        name="price"
+        type="text"
+        class="form-control"
+        aria-label="Amount (to the nearest dollar)"
+        value="<%=datas.price%>"
+      />
+      <span class="input-group-text">.00</span>
+    </div>
+    <button type="submit" class="btn btn-info px-4">Update ground</button>
+  </form>
 </div>
 
+<div>
+  <a href="/campground" class="btn btn-success px-4 my-4" role="button">Home</a>
+</div>
+
+<!-- <form action="/campground/<%=datas.id%>?_method=PUT " method="post">
+    <label for="title">Title</label>
+    <input type="text" id="title" name="title" value="<%=datas.title%>">
+    <label for="location">location</label>
+    <input type="text" id="location" name="location" value="<%=datas.location%>">
+    <button type="submit">Update</button>
+</form> -->

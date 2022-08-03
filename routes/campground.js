@@ -32,6 +32,9 @@ home.post("/", inputValidator, async (req, res) => {
   const newCamp = new campGround({
     title: datas.title,
     location: datas.location,
+    image: datas.image,
+    price: datas.price,
+    description: datas.description
   });
   const saved = await newCamp.save();
   res.redirect(`campground/${saved._id}`);

@@ -4,7 +4,18 @@
         <a href="campground/new">Add new Camp Ground</a>
     </div>
     <%for(let data of datas){%>
-        <ul>
-             <a href="/campground/<%= data._id %> "><li><%= data.title %></a> </li>
-        </ul>
+        <div class="row my-3">
+            <div class="col-md-4">
+                <img src="<%= data.image %>" alt="camp image" class="img-fluid">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title"><%=data.title%></h5>
+                    <p class="card-text"><%=data.description%></p>
+                    <small class="text-muted"><%=data.location%> </small>
+                    <a href="/campground/<%=data.id%>" class="btn btn-primary">Show details</a>
+                </div>
+            </div>
+        </div>
     <%}%>
+
