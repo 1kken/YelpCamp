@@ -1,28 +1,58 @@
 <% layout('layouts/boilerplate') -%>
 <div class="row">
   <h1 class="text-center">Create new Camp ground</h1>
-  <form action="/campground" method="post">
+  <form action="/campground" method="post" class="validated-form" novalidate>
     <div class="mb-3">
       <label for="title" class="form-label">Title</label>
-      <input type="text" id="title" class="form-control" name="title" />
+      <input
+        type="text"
+        id="title"
+        class="form-control"
+        name="title"
+        required
+      />
     </div>
     <div class="mb-3">
       <label for="location" class="form-label">location</label>
-      <input type="text" id="location" name="location" class="form-control" />
+      <input
+        type="text"
+        id="location"
+        name="location"
+        class="form-control"
+        required
+      />
     </div>
     <div class="mb-3">
-        <label for="image" class="form-label">Image Url</label>
-        <input type="text" id="Image" name="image" class="form-control" />
+      <label for="image" class="form-label">Image Url</label>
+      <input
+        type="text"
+        id="Image"
+        name="image"
+        class="form-control"
+        required
+      />
     </div>
     <div class="mb-3">
-        <label for="description" class="form-label">Description</label>
-        <textarea id="description" name="description" class="form-control"></textarea>
+      <label for="description" class="form-label">Description</label>
+      <textarea
+        id="description"
+        name="description"
+        class="form-control"
+        required
+      ></textarea>
     </div>
     <div class="input-group mb-3">
-        <span class="input-group-text">$</span>
-        <input id="price" name="price" type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-        <span class="input-group-text">.00</span>
-      </div>
+      <span class="input-group-text">$</span>
+      <input
+        id="price"
+        name="price"
+        type="text"
+        class="form-control"
+        aria-label="Amount (to the nearest dollar)"
+        required
+      />
+      <span class="input-group-text">.00</span>
+    </div>
     <button type="submit" class="btn btn-success px-4">Add new</button>
   </form>
 </div>
