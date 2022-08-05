@@ -5,7 +5,6 @@ const home = express.Router();
 const campGround = require("../models/campground");
 const methodOverride = require("method-override");
 const catchAsync = require('../Utilities/CatchAsync');
-const appError = require('../Utilities/ExpressError');
 
 //use method overriding
 home.use(methodOverride("_method"));

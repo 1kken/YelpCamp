@@ -9,6 +9,7 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));
 app.engine('ejs', ejsMate);
+const appError = require('./Utilities/ExpressError');
 //connection string
 mongoose
   .connect(process.env.MONGODB_URI)
@@ -16,14 +17,17 @@ mongoose
   .catch((err) => console.log(err));
 
 const campground = require("./routes/campground");
+const { stat } = require("fs");
 app.use("/campground", campground);
-app.listen(3000);
 
-app.use((err,req,res,next) =>{
-  res.send('Something went wrong :<');
+
+app.use((req,res,next) =>{
+  next(new appError(404, 'Page not found'))
 });
 
-app.use((req,res) =>{
-  res.send('404 Cant find Page :<')
-})
+app.use((err,req,res,next) =>{
+  const {statusCode = 500,message = 'Something went wrong'} = err;
+  res.render('error',{statusCode});
+});
 
+app.listen(3000);
