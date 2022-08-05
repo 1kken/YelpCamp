@@ -19,3 +19,11 @@ const campground = require("./routes/campground");
 app.use("/campground", campground);
 app.listen(3000);
 
+app.use((err,req,res,next) =>{
+  res.send('Something went wrong :<');
+});
+
+app.use((req,res) =>{
+  res.send('404 Cant find Page :<')
+})
+
