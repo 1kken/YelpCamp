@@ -9,7 +9,9 @@
         <p class="card-text"><%=datas.description%></p>
         <p class="card-text">$<%=datas.price%>/night</p>
         <a href="/campground" class="btn btn-success">Home</a>
-        <a href="<%=datas._id%>%>?_method=DELETE" class="btn btn-danger">Delete</a>
+        <form action="<%=datas.id%>?_method=delete" method="post" class="d-inline">
+        <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
         <a href="/campground/<%=datas.id%>/edit" class="btn btn-warning px-3">Edit</a>
       </div>
     </div>

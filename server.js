@@ -17,7 +17,6 @@ mongoose
   .catch((err) => console.log(err));
 
 const campground = require("./routes/campground");
-const { stat } = require("fs");
 app.use("/campground", campground);
 
 
