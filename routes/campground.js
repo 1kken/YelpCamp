@@ -67,13 +67,13 @@ home.put(
   "/:id",
   inputValidator,
   catchAsync(async (req, res) => {
-    const datas = req.body;
+    const datas = req.camp;
     const id = req.params.id;
-    const { title, location } = datas;
+    const { title, location,description,image,price} = datas;
     try {
       await campGround.findByIdAndUpdate(
         id,
-        { $set: { title: title, location: location } },
+        { $set: { title: title, location: location, description:description,image:image,price:price} },
         { returnDocument: "after" }
       );
     } catch (error) {
