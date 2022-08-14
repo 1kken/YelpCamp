@@ -5,6 +5,7 @@ const home = express.Router();
 const campGround = require("../models/campground");
 const methodOverride = require("method-override");
 const catchAsync = require("../Utilities/CatchAsync");
+const appError = require('../Utilities/ExpressError');
 const Review = require('../models/review')
 const Joi = require("joi");
 const { Error } = require("mongoose");
@@ -64,7 +65,7 @@ home.get(
 );
 
 //campgoround reviews
-home.post('/:id/reviews',catchAsync( async(req,res)=>{
+home.post('/:id/reviews',validateReviews,catchAsync( async(req,res)=>{
   const id = req.params.id
   const campground = await campGround.findById(id);
   const inputData = req.body
@@ -72,7 +73,7 @@ home.post('/:id/reviews',catchAsync( async(req,res)=>{
   const saveReview = await newReview.save();
   campground.reviews.push(saveReview);
   const saved = await campground.save() 
-  res.render('campground/show', {datas:saved});
+  res.redirect(`/campground/${id}`);
 }));
 
 //Edit Camp ground
@@ -129,6 +130,25 @@ function inputValidator(req, res, next) {
     req.camp = req.body;
   } else {
     throw new Error('Invalid input');
+  }
+  next();
+}
+
+function validateReviews(req,res,next){
+  const {reviewRating,reviewComment} = req.body
+  const schema = Joi.object({
+    S_rating: Joi.number().required(),
+    S_comment: Joi.string().required()
+  })
+
+  const { error, value } = schema.validate({
+    S_rating: reviewRating,
+    S_comment: reviewComment,
+  });
+  if (!error) {
+    req.camp = req.body;
+  } else {
+    throw new appError(404,'Invalid input');
   }
   next();
 }

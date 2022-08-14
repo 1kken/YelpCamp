@@ -25,7 +25,8 @@ app.use((req,res,next) =>{
 });
 
 app.use((err,req,res,next) =>{
-  const {statusCode = 500,message = 'Something went wrong'} = err;
+  const {statusCode = 500,message = 'Something went wrong'} = err;  
+  console.log(message);
   res.render('error',{statusCode});
 });
 
