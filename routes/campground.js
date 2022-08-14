@@ -5,6 +5,7 @@ const home = express.Router();
 const campGround = require("../models/campground");
 const methodOverride = require("method-override");
 const catchAsync = require("../Utilities/CatchAsync");
+const Review = require('../models/review')
 const Joi = require("joi");
 const { Error } = require("mongoose");
 //use method overriding
@@ -62,6 +63,18 @@ home.get(
   })
 );
 
+//campgoround reviews
+home.post('/:id/reviews',catchAsync( async(req,res)=>{
+  const id = req.params.id
+  const campground = await campGround.findById(id);
+  const inputData = req.body
+  const newReview = new Review({body:inputData.reviewComment, rating:inputData.reviewRating})
+  const saveReview = await newReview.save();
+  campground.reviews.push(saveReview);
+  const saved = await campground.save() 
+  res.render('campground/show', {datas:saved});
+}));
+
 //Edit Camp ground
 home.put(
   "/:id",
@@ -92,6 +105,8 @@ home.delete(
     res.redirect("/campground");
   })
 );
+
+
 
 //middlewares
 function inputValidator(req, res, next) {
